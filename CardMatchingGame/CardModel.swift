@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+class CardModel {
+    
+    //method that generates the cards
+    func getCards() -> [Any] {
+        
+        
+        return []
+    }
+}
