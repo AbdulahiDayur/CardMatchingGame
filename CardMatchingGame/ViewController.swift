@@ -7,12 +7,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UICollectionViewController {
+    
+    let model = CardModel()
+    var cardsArray = [Card]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cardsArray = model.getCards()
+        
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+        "CardCell", for: indexPath) as? CardCollectionViewCell else {
+            fatalError("Unable to dequeue PersonCell")
+        }
+        
+        
+        return cell
+    }
+    
 
 
 }
