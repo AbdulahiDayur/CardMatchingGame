@@ -15,6 +15,7 @@
 		0F6909D92662F838009E6B3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F6909D72662F838009E6B3F /* LaunchScreen.storyboard */; };
 		0F6909E326634DCB009E6B3F /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6909E226634DCB009E6B3F /* CardModel.swift */; };
 		0F6909E626634EE7009E6B3F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6909E526634EE7009E6B3F /* Card.swift */; };
+		0F6909EB266471D4009E6B3F /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6909EA266471D4009E6B3F /* CardCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0F6909DA2662F838009E6B3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F6909E226634DCB009E6B3F /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		0F6909E526634EE7009E6B3F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		0F6909EA266471D4009E6B3F /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				0F6909D02662F835009E6B3F /* ViewController.swift */,
 				0F6909E226634DCB009E6B3F /* CardModel.swift */,
 				0F6909E526634EE7009E6B3F /* Card.swift */,
+				0F6909EA266471D4009E6B3F /* CardCollectionViewCell.swift */,
 				0F6909D22662F835009E6B3F /* Main.storyboard */,
 				0F6909D52662F838009E6B3F /* Assets.xcassets */,
 				0F6909D72662F838009E6B3F /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				0F6909E326634DCB009E6B3F /* CardModel.swift in Sources */,
 				0F6909E626634EE7009E6B3F /* Card.swift in Sources */,
 				0F6909CD2662F835009E6B3F /* AppDelegate.swift in Sources */,
+				0F6909EB266471D4009E6B3F /* CardCollectionViewCell.swift in Sources */,
 				0F6909CF2662F835009E6B3F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

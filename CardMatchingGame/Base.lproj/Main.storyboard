@@ -30,7 +30,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCell" id="QBH-fa-hL4">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCell" id="QBH-fa-hL4" customClass="CardCollectionViewCell" customModule="CardMatchingGame" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="154" height="224"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="V4q-ER-Lkt">
@@ -56,6 +56,10 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="154" height="224"/>
+                                        <connections>
+                                            <outlet property="backImageView" destination="uNE-lT-DcO" id="uG3-CG-5wr"/>
+                                            <outlet property="frontImageView" destination="Qba-W0-YdQ" id="OTO-JU-k3O"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -73,6 +77,9 @@
                             <constraint firstItem="Ojx-OL-0WA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wZx-aw-B03"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="9GC-SV-LdO" id="7La-24-Mls"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
