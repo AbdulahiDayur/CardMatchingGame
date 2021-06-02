@@ -11,7 +11,6 @@ class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet var frontImageView: UIImageView!
     @IBOutlet var backImageView: UIImageView!
     
-    
     var card: Card?
     
     func configureCell(card:Card) {

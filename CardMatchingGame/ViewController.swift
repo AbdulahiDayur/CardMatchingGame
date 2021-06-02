@@ -17,6 +17,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     let model = CardModel()
     var cardsArray = [Card]()
+    
+    
+    var firstFlippedCardIndex: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.delegate = self
     }
     
-    
+    // MARK: - CollectionView Delegate Methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cardsArray.count
@@ -49,9 +52,38 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         if cell?.card?.isFlipped == false {
             cell?.flipUp()
-        } else {
-            cell?.flipDown()
+            
+            if firstFlippedCardIndex == nil {
+                firstFlippedCardIndex = indexPath
+                
+            } else {
+                
+            }
         }
+    }
+    
+    // MARK: - Game Logic Methods
+    
+    //Comparing Second flipped card to first
+    func checkForMatch(_ secondFlippedCard: IndexPath) {
+        
+        let cardOne = cardsArray[firstFlippedCardIndex!.row]
+        let cardTwo = cardsArray[secondFlippedCard.row]
+        
+        if cardOne.imageName == cardTwo.imageName {
+            // It's a match
+            
+            // Set the status and remove them
+        }
+        else {
+            
+            // It's not a match
+            
+            //Flip them back over
+        }
+        
+        // Reset the firstFlippedCardIndex property
+        firstFlippedCardIndex = nil
     }
     
 
