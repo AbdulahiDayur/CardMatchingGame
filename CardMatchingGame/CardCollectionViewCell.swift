@@ -22,7 +22,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         if card.isFlipped == true {
             flipUp(speed: 0)
         }else {
-            flipDown(speed: 0)
+            flipDown(speed: 0, delay: 0)
         }
     }
     
@@ -33,10 +33,23 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func flipDown(speed: TimeInterval = 0.3) {
-        UIView.transition(from: frontImageView, to: backImageView, duration: 0.3, options: [.showHideTransitionViews, .transitionFlipFromLeft])
+    func flipDown(speed: TimeInterval = 0.3, delay: TimeInterval = 0.5) {
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
+            UIView.transition(from: self.frontImageView, to: self.backImageView, duration: 0.3, options: [.showHideTransitionViews, .transitionFlipFromLeft])
+        }
         
         card?.isFlipped = false
+    }
+    
+    func remove() {
+        
+        // Make imageViews invisible
+        backImageView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
+            self.frontImageView.alpha = 0
+        }, completion: nil)
     }
     
 }

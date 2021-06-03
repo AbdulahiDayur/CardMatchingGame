@@ -50,14 +50,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell
         
-        if cell?.card?.isFlipped == false {
+        if cell?.card?.isFlipped == false && cell?.card?.isMatched == false {
             cell?.flipUp()
             
             if firstFlippedCardIndex == nil {
                 firstFlippedCardIndex = indexPath
                 
             } else {
-                
+                checkForMatch(indexPath)
             }
         }
     }
@@ -70,16 +70,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cardOne = cardsArray[firstFlippedCardIndex!.row]
         let cardTwo = cardsArray[secondFlippedCard.row]
         
+        // Get the two collectionViewCells
+        let cellOne = collectionView.cellForItem(at: firstFlippedCardIndex!) as? CardCollectionViewCell
+        let cellTwo = collectionView.cellForItem(at: secondFlippedCard) as? CardCollectionViewCell
+        
+        
         if cardOne.imageName == cardTwo.imageName {
             // It's a match
-            
             // Set the status and remove them
+            cardOne.isMatched = true
+            cardTwo.isMatched = true
+            
+            cellOne?.remove()
+            cellTwo?.remove()
         }
         else {
-            
             // It's not a match
-            
             //Flip them back over
+            cellOne?.flipDown()
+            cellTwo?.flipDown()
         }
         
         // Reset the firstFlippedCardIndex property
