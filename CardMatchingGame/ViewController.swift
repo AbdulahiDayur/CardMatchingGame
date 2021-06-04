@@ -15,8 +15,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet var collectionView: UICollectionView!
     
+    @IBOutlet var timerLabel: UILabel!
+    
+    
     let model = CardModel()
     var cardsArray = [Card]()
+    
+    var timer: Timer?
+    var milliseconds: Int = 10 * 10000
     
     
     var firstFlippedCardIndex: IndexPath?
@@ -28,7 +34,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        // Initialize the timer
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
     }
+    
+    // MARK - Timer Methods
+    
+    @objc func timerFired() {
+        // Decrement the counter
+        milliseconds -= 1
+        
+        // Update the label
+        let seconds: Double = Double(milliseconds)/1000.0
+        timerLabel.text = String(format: "%.2f", seconds)
+        
+        // Stop the timer if it reaches Zero
+        if milliseconds == 0 {
+            timer?.invalidate()
+        }
+        
+        // Check if the user has cleared all the pairs
+    }
+    
     
     // MARK: - CollectionView Delegate Methods
     
@@ -37,13 +65,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-        "CardCell", for: indexPath) as? CardCollectionViewCell else {
-            fatalError("Unable to dequeue CardCell")
-        }
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+//        "CardCell", for: indexPath) as? CardCollectionViewCell else {
+//            fatalError("Unable to dequeue CardCell")
+//        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         
-        cell.configureCell(card: cardsArray[indexPath.row])
+
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // Configure the state of the cell based on the properties of the Card that it represents
+        let Customcell = cell as? CardCollectionViewCell
+        
+        // Get the card from the card array
+        let card = cardsArray[indexPath.row]
+        
+        // Finish configuring the cell
+        Customcell?.configureCell(card: card)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -86,6 +126,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         else {
             // It's not a match
+            cardOne.isFlipped = false
+            cardTwo.isFlipped = false
+            
             //Flip them back over
             cellOne?.flipDown()
             cellTwo?.flipDown()
