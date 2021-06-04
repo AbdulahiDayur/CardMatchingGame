@@ -22,7 +22,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var cardsArray = [Card]()
     
     var timer: Timer?
-    var milliseconds: Int = 10 * 10000
+    var milliseconds: Int = 10 * 1000
     
     
     var firstFlippedCardIndex: IndexPath?
@@ -47,14 +47,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         // Update the label
         let seconds: Double = Double(milliseconds)/1000.0
-        timerLabel.text = String(format: "%.2f", seconds)
+        timerLabel.text = String(format: "Time Remaining: %.2f", seconds)
         
         // Stop the timer if it reaches Zero
         if milliseconds == 0 {
+            timerLabel.textColor = UIColor.red
             timer?.invalidate()
         }
         
         // Check if the user has cleared all the pairs
+        checkForGameEnd()
     }
     
     
@@ -123,6 +125,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             cellOne?.remove()
             cellTwo?.remove()
+            
+            // Was that the last pair?
+            checkForGameEnd()
         }
         else {
             // It's not a match
@@ -138,6 +143,35 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         firstFlippedCardIndex = nil
     }
     
+    func checkForGameEnd() {
+        
+        // Check if any card is unmatched
+        var hasWon = true
+        
+        for card in cardsArray {
+            if card.isMatched == false {
+                hasWon = false
+                break
+            }
+        }
+        
+        if hasWon {
+            showAlert(title: "YOU WON", message: "You've managed to match all the cards!")
+        } else {
+            
+            if milliseconds <= 0 {
+                showAlert(title: "TIme's up Bud", message: "Better luck next time....LOSER")
+            }
+        }
+        
+        
+    }
+    
+    func showAlert(title: String, message: String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
+        present(ac, animated: true)
+    }
 
 
 }
