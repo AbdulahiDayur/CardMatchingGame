@@ -99,6 +99,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        // Don't let the user interact if the time is 0
+        if milliseconds <= 0 {
+            return
+        }
+        
         let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell
         
         if cell?.card?.isFlipped == false && cell?.card?.isMatched == false {

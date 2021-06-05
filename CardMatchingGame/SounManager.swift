@@ -51,6 +51,7 @@ class SoundManager {
             audioPlayer?.play()
         } catch {
             print("Couldn't create an audio player")
+            return
         }
         
     }
